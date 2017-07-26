@@ -5,9 +5,14 @@ import PropTypes from 'prop-types';
 import ItemActions from '../../../../redux/Item/actions';
 
 class Item extends Component {
-  handleClick = () => this.props.dispatch(ItemActions.activateButton(this.props.id));
+  state = { shouldShowComponent: true };
+  handleClick = () => {
+    this.props.dispatch(ItemActions.activateButton(this.props.id));
+    if (this.props.isActive) this.setState({ shouldShowComponent: !this.state.shouldShowComponent });
+  };
 
   render() {
+    if (!this.state.shouldShowComponent) return null;
     return (
       <button style={{ backgroundColor: this.props.isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
         {this.props.id}
