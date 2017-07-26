@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.items.map((item, index) => <Item id={item} key={index} />)}
+        {this.state.items.map(item => <Item id={{ item }} key={item} />)}
         <button onClick={this.handleDelete}>Borrar primero</button>
       </div>
     );
