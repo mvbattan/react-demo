@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleRoot } from 'radium';
 
-import styles, { BaseStyles } from './App.styles';
+import styles, { BaseStyles } from './styles';
 
-import Layout from './app';
+import Layout from './layout';
 
 class App extends Component {
   componentWillMount() {}

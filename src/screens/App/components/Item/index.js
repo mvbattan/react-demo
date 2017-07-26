@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-function Item({ name, isActive, onClick }) {
-  return (
-    <button style={{ backgroundColor: isActive ? 'blue' : 'white' }} onClick={onClick}>
-      {name}
-    </button>
-  );
+class Item extends Component {
+  handleClick = () => this.props.onClick(this.props.id);
+
+  render() {
+    const { id, isActive } = this.props;
+    return (
+      <button style={{ backgroundColor: isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
+        {id}
+      </button>
+    );
+  }
 }
 
 Item.propTypes = {
-  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 };
