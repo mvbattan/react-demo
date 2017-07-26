@@ -19,9 +19,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  loading: store.auth.loading,
-  currentUser: store.auth.currentUser
-});
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

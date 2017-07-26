@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import ItemActions from '../../../../redux/Item/actions';
+
 class Item extends Component {
-  state = { isActive: false };
-  handleClick = () => this.setState({ isActive: !this.state.isActive });
+  handleClick = () => this.props.dispatch(ItemActions.activateButton(this.props.id));
 
   render() {
     return (
-      <button style={{ backgroundColor: this.state.isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
+      <button style={{ backgroundColor: this.props.isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
         {this.props.id}
       </button>
     );
@@ -15,7 +17,12 @@ class Item extends Component {
 }
 
 Item.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
 
-export default Item;
+const mapStateToProps = (store, ownProps) => ({
+  isActive: store.item.activeId === ownProps.id
+});
+
+export default connect(mapStateToProps)(Item);
