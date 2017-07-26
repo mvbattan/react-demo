@@ -3,13 +3,17 @@ import React, { Component } from 'react';
 import Item from './components/Item';
 
 const ELEMENTS_COUNT = 10;
-const items = [...Array(ELEMENTS_COUNT).keys()];
 
 class App extends Component {
+  state = { items: [...Array(ELEMENTS_COUNT).keys()] };
+
+  handleDelete = () => this.setState({ items: this.state.items.slice(1) });
+
   render() {
     return (
       <div>
-        {items.map((item, index) => <Item id={item} key={index} />)}
+        {this.state.items.map((item, index) => <Item id={item} key={index} />)}
+        <button onClick={this.handleDelete}>Borrar primero</button>
       </div>
     );
   }
