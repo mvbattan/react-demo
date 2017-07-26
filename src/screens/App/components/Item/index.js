@@ -2,22 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Item extends Component {
-  handleClick = () => this.props.onClick(this.props.id);
+  state = { isActive: false };
+  handleClick = () => this.setState({ isActive: !this.state.isActive });
 
   render() {
-    const { id, isActive } = this.props;
     return (
-      <button style={{ backgroundColor: isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
-        {id}
+      <button style={{ backgroundColor: this.state.isActive ? 'blue' : 'white' }} onClick={this.handleClick}>
+        {this.props.id}
       </button>
     );
   }
 }
 
 Item.propTypes = {
-  id: PropTypes.number.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  id: PropTypes.number.isRequired
 };
 
 export default Item;
